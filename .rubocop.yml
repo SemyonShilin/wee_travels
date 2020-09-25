@@ -1,0 +1,120 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  TargetRailsVersion: 6.0.1
+  TargetRubyVersion: 2.7.1
+  DisplayCopNames: true
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - config/**/*
+    - migrate.rb
+    - tmp/**/*
+    - node_modules/**/*
+    - ./Gemfile
+    - ./vendor/**/*
+
+Layout/ClassStructure:
+  Categories:
+    module_inclusion:
+      - extend
+      - include
+      - prepend
+    association:
+      - has_one
+      - has_many
+    attribute:
+      - attr_accessor
+      - attr_reader
+      - attr_writer
+    ExpectedOrder:
+      - module_inclusion
+      - constants
+      - public_class_methods
+      - initializer
+      - public_methods
+      - protected_methods
+      - private_methods
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+
+Style/AndOr:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 15
+
+Metrics/BlockLength:
+  Exclude:
+    - Guardfile
+    - config/**/*
+    - lib/tasks/*.rake
+    - spec/**/*
+    - db/migrate/**/*
+  Max: 10
+
+Metrics/ClassLength:
+  Enabled: true
+
+Metrics/MethodLength:
+  Exclude:
+    - Guardfile
+    - config/**/*
+    - lib/tasks/*.rake
+    - spec/**/*
+    - db/migrate/**/*
+  Max: 10
+
+Metrics/LineLength:
+  Max: 120
+
+Naming/FileName:
+  Exclude:
+    - './Gemfile'
+    - './Rakefile'
+
+Metrics/CyclomaticComplexity: # You can change this value if your team need.
+  Max: 10
+
+Metrics/PerceivedComplexity: # You can change this value if your team need.
+  Max: 10
+
+Rails:
+  Enabled: true
+
+RSpec/MultipleExpectations: # You can change this value if your team need.
+  Max: 40
+
+RSpec/NestedGroups:
+  Max: 10
+
+RSpec/ExampleLength: # You can change this value if your team need.
+  Max: 40
+
+RSpec/EmptyExampleGroup:
+  CustomIncludeMethods:
+    - example_request
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: []
+    '%i': '[]'
+    '%I': '[]'
+    '%w': '[]'
+    '%W': '[]'
+    '%r': '{}'

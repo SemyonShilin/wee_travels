@@ -6,6 +6,10 @@ Rails.application.routes.draw do
           resources :tours, except: %i[new edit]
         end
       end
+
+      scope module: :customers do
+        resources :tours, only: %i[show index]
+      end
     end
   end
 end

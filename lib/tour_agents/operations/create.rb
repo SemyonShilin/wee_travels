@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TourAgents
   module Operations
     class Create < ::Core::Operation

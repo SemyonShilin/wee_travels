@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TourAgents
   class Show < Operation
     include WeeTravels::Deps[

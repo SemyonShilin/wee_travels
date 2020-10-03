@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 module Tours
   module Queries
     class Collection
       include WeeTravels::Deps[model: :tour]
 
-      def all
-        model.all
-      end
+      delegate :all, to: :model
     end
   end
 end

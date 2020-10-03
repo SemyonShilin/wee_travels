@@ -10,10 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_183142) do
+ActiveRecord::Schema.define(version: 2020_10_03_161632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "communications", force: :cascade do |t|
+    t.bigint "conversation_id"
+    t.bigint "message_id"
+    t.string "user_type"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_communications_on_conversation_id"
+    t.index ["message_id"], name: "index_communications_on_message_id"
+    t.index ["user_type", "user_id"], name: "index_communications_on_user_type_and_user_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "conversation_id"
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["owner_type", "owner_id"], name: "index_messages_on_owner_type_and_owner_id"
+  end
 
   create_table "tour_agents", force: :cascade do |t|
     t.string "email"
@@ -31,5 +66,8 @@ ActiveRecord::Schema.define(version: 2020_09_22_183142) do
     t.index ["tour_agent_id"], name: "index_tours_on_tour_agent_id"
   end
 
+  add_foreign_key "communications", "conversations"
+  add_foreign_key "communications", "messages"
+  add_foreign_key "messages", "conversations"
   add_foreign_key "tours", "tour_agents"
 end

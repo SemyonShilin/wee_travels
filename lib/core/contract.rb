@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   class Contract < ::Dry::Rails::Features::ApplicationContract
     Dry::Validation.load_extensions(:monads)

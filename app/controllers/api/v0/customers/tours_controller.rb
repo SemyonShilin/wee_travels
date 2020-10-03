@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Api
   module V0
     module Customers
       class ToursController < BaseController
         def index
-          result = resolve('tours.index').call(input: safe_params.to_h)
+          result = resolve('customers.tours.index').call(input: safe_params.to_h)
 
           case result
           in Success(resource)
@@ -18,7 +20,7 @@ module Api
         end
 
         def show
-          result = resolve('tours.show').call(id: safe_params[:id])
+          result = resolve('customers.tours.show').call(id: safe_params[:id])
 
           case result
           in Success(resource)

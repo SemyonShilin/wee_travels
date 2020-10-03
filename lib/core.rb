@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   autoload :Contract, 'core/contract'
   autoload :Jwt, 'core/jwt'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TourAgents
   module Operations
     class Authenticate < Core::Operation

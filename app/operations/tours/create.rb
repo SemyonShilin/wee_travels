@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tours
   class Create < Operation
     include WeeTravels::Deps[

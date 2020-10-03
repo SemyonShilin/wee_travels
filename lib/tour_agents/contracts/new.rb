@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TourAgents
   module Contracts
     class New < Core::Contract
@@ -8,13 +10,13 @@ module TourAgents
       end
 
       rule(:email) do
-        unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)
-          key.failure('has invalid format')
-        end
+        key.failure('has invalid format') unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)
       end
 
       rule(:password_confirmation, :password) do
-        key(:password_confirmation).failure('do not equal') unless values[:password_confirmation].eql?(values[:password])
+        unless values[:password_confirmation].eql?(values[:password])
+          key(:password_confirmation).failure('do not equal')
+        end
       end
     end
   end

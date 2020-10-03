@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tours
   module Operations
     class Find < ::Core::Operation

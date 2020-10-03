@@ -32,6 +32,7 @@ end
 
 group :development do
   gem 'brakeman'
+  gem 'rails-erd'
 end
 
 group :linter do

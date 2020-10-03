@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Core
   class Jwt < Operation
     def encode(payload, exp = 1.year.from_now)

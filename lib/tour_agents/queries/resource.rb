@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 module TourAgents
   module Queries
     class Resource
       include WeeTravels::Deps[model: :tour_agent]
 
-      def find(id)
-        model.find(id)
-      end
+      delegate :find, to: :model
     end
   end
 end

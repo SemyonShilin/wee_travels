@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/ping' => lambda { |env| [200, { 'Content-Type' => 'application/json' }, ['Pong']] }
+
   namespace :api do
     namespace :v0 do
       resources :tour_agents, except: %i[new edit] do

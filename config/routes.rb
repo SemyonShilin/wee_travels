@@ -19,6 +19,12 @@ Rails.application.routes.draw do
       end
 
       resources :messages, only: %i[index create]
+
+      resources :tours, only: %i[] do
+        scope module: :customers do
+          resources :ratings, only: %i[create index]
+        end
+      end
     end
   end
 end

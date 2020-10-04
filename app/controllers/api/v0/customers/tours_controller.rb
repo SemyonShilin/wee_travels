@@ -5,7 +5,7 @@ module Api
     module Customers
       class ToursController < BaseController
         def index
-          result = resolve('customers.tours.index').call(input: safe_params.to_h)
+          result = resolve('tours.index').call(input: safe_params.to_h)
 
           case result
           in Success(resource)
@@ -20,11 +20,11 @@ module Api
         end
 
         def show
-          result = resolve('customers.tours.show').call(id: safe_params[:id])
+          result = resolve('tours.show').call(id: safe_params[:id])
 
           case result
           in Success(resource)
-            render json: resource.as_json
+            render json: resource.as_json(include: :ratings)
           in Failure[status, message]
             render json: { message: message }, status: status
           end

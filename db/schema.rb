@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_161632) do
+ActiveRecord::Schema.define(version: 2020_10_11_161333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 2020_10_03_161632) do
     t.index ["owner_type", "owner_id"], name: "index_messages_on_owner_type_and_owner_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "tour_id"
+    t.string "comment"
+    t.integer "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_ratings_on_customer_id"
+    t.index ["tour_id"], name: "index_ratings_on_tour_id"
+  end
+
   create_table "tour_agents", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -63,11 +74,16 @@ ActiveRecord::Schema.define(version: 2020_10_03_161632) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "rating", precision: 3, scale: 2, default: "0.0"
+    t.decimal "price", precision: 15, scale: 2
+    t.integer "ratings_count"
     t.index ["tour_agent_id"], name: "index_tours_on_tour_agent_id"
   end
 
   add_foreign_key "communications", "conversations"
   add_foreign_key "communications", "messages"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "ratings", "customers"
+  add_foreign_key "ratings", "tours"
   add_foreign_key "tours", "tour_agents"
 end

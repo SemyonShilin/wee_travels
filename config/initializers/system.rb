@@ -7,6 +7,12 @@ Dry::Rails.container do
     end
   end
 
+  auto_register!('app/channels') do |config|
+    config.instance do |component|
+      component.loader.constant
+    end
+  end
+
   auto_register!('lib')
   auto_register!('app/operations')
 end

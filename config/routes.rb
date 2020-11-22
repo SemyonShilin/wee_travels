@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         scope module: :customers do
           # resources :tours, only: %i[show index]
           resources :messages, only: %i[create]
-          resources :conversations, only: %i[index]
+          resources :conversations, only: %i[index show]
         end
       end
 

@@ -63,3 +63,5 @@ gem 'dry-types'
 
 gem 'bcrypt'
 gem 'jwt'
+gem 'redis'
+gem 'redis-namespace'

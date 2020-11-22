@@ -226,6 +226,9 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     rake (13.0.1)
+    redis (4.2.5)
+    redis-namespace (1.8.0)
+      redis (>= 3.0.4)
     rexml (3.2.4)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
@@ -311,6 +314,8 @@ DEPENDENCIES
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
   rails-erd
+  redis
+  redis-namespace
   rspec-rails
   rubocop (= 0.75.1)
   rubocop-performance

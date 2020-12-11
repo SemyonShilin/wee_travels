@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_10_11_161333) do
-=======
-ActiveRecord::Schema.define(version: 2020_10_04_075905) do
->>>>>>> 73af6dbb44465bee73e2cdbce6b7dc09f5f649ee
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +29,6 @@ ActiveRecord::Schema.define(version: 2020_10_04_075905) do
 
   create_table "conversations", force: :cascade do |t|
     t.string "title"
-    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,13 +73,9 @@ ActiveRecord::Schema.define(version: 2020_10_04_075905) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-<<<<<<< HEAD
     t.decimal "rating", precision: 3, scale: 2, default: "0.0"
     t.decimal "price", precision: 15, scale: 2
     t.integer "ratings_count"
-=======
-    t.decimal "rating", precision: 3, scale: 2
->>>>>>> 73af6dbb44465bee73e2cdbce6b7dc09f5f649ee
     t.index ["tour_agent_id"], name: "index_tours_on_tour_agent_id"
   end
 

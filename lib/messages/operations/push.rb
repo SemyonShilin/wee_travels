@@ -10,7 +10,8 @@ module Messages
       def call(resource:)
         Try() do
           channel.broadcast_to(
-            resource.conversation, resource.as_json(include: %i[owner communications])
+            resource.conversation,
+            resource.as_json(include: %i[owner communications])
           )
         end.to_result
       end

@@ -24,12 +24,28 @@ module Api
         end
 
         schema(:show) do
-          optional(:customer_id).maybe(:integer)
+          required(:customer_id).filled(:integer)
           required(:id).filled(:integer)
         end
 
         def show
           result = resolve('customers.conversations.show').call(input: safe_params)
+
+          case result
+          in Success(resource)
+            render json: resource.as_json
+          in Failure[status, message]
+            render json: { message: message }, status: status
+          end
+        end
+
+        schema(:for_tour) do
+          required(:customer_id).filled(:integer)
+          required(:tour_id).filled(:integer)
+        end
+
+        def for_tour
+          result = resolve('customers.conversations.for_tour').call(input: safe_params)
 
           case result
           in Success(resource)

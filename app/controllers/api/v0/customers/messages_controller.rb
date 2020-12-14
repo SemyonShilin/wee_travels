@@ -7,6 +7,7 @@ module Api
         schema(:create) do
           required(:customer_id).filled(:integer)
           required(:tour_agent_id).filled(:integer)
+          required(:tour_id).filled(:integer)
           required(:body).filled(:string)
         end
 

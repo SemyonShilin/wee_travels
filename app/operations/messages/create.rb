@@ -12,8 +12,8 @@ module Messages
     def call(input:)
       ActiveRecord::Base.transaction do
         conversation = yield find_or_create.call(input: input)
-        message = yield create.call(input: input, conversation: conversation)
         owner = input[:owner_type].constantize.find(input[:owner_id])
+        message = yield create.call(input: input.merge(owner: owner), conversation: conversation)
         yield mark_others_unread.call(params: { user: owner }, conversation: conversation, message: message)
         yield push.call(resource: message)
 

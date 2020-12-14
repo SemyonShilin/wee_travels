@@ -13,9 +13,9 @@ module Conversations
       def call(input:)
         ActiveRecord::Base.transaction do
           conversation = yield operation.call(input: input)
-          customer = yield customer_operation.call(input: input[:customer_id])
-          tour_agent = yield tour_agent_operation.call(input: input[:tour_agent_id])
-          yield build.call(users: [customer, tour_agent], conversation: conversation)
+          customer = yield customer_operation.call(id: input[:customer_id])
+          tour_agent = yield tour_agent_operation.call(id: input[:tour_agent_id])
+          yield communication_operation.call(users: [customer, tour_agent], conversation: conversation)
 
           Success(conversation.reload)
         end

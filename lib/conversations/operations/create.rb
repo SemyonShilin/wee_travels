@@ -9,7 +9,7 @@ module Conversations
 
       def call(input:)
         Try() do
-          resource = model.new(title: input[:title])
+          resource = model.new(title: input[:title], tour_id: input[:tour_id])
           resource.tap(&:save!)
         end.to_result
       end

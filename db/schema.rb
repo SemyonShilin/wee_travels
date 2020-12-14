@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_161333) do
+ActiveRecord::Schema.define(version: 2020_12_14_161542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 2020_10_11_161333) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tour_id"
+    t.boolean "dialog", default: true, null: false
+    t.index ["tour_id"], name: "index_conversations_on_tour_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -81,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_10_11_161333) do
 
   add_foreign_key "communications", "conversations"
   add_foreign_key "communications", "messages"
+  add_foreign_key "conversations", "tours"
   add_foreign_key "messages", "conversations"
   add_foreign_key "ratings", "customers"
   add_foreign_key "ratings", "tours"

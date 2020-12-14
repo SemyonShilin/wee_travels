@@ -5,7 +5,9 @@ module Conversations
     class Resource
       include WeeTravels::Deps[model: :conversation]
 
-      delegate :find, to: :model
+      def find(id)
+        model.find_by(id: id)
+      end
     end
   end
 end

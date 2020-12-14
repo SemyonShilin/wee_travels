@@ -22,7 +22,7 @@ module Api
         required(:owner_id).filled(:integer)
         required(:owner_type).filled(:string)
         required(:body).filled(:string)
-        required(:conversation_id).filled(:integer)
+        optional(:conversation_id).maybe(:integer)
       end
 
       def create
